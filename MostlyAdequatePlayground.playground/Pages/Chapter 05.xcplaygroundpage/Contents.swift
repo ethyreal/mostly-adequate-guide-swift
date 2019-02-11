@@ -20,7 +20,12 @@ func <<< <A, B, C>(_ f: @escaping (B) -> C, _ g: @escaping (A) -> B) -> (A) -> C
 
 
 /*:
- ... Don't be scared! This is the level-9000-super-Saiyan-form of _compose_. For the sake of reasoning, let's drop the infix implementation and consider a simpler form that can compose two functions together. Once you get your head around that, you can push the abstraction further and consider it simply works for any number of functions (we could even prove that)!
+ ... Don't be scared! This is the level-9000-super-Saiyan-form of _compose_.
+ For the sake of reasoning, let's drop the infix implementation and
+ consider a simpler form that can compose two functions together.
+ Once you get your head around that, you can push the abstraction further
+ and consider it simply works for any number of
+ functions (we could even prove that)!
 
  Here's a more friendly _compose_ for you my dear readers:
  */
@@ -158,6 +163,84 @@ func compose3(_ g: @escaping (String) -> String, _ f: @escaping (String) -> Stri
     }
 }
 
+/*:
+ Exercises
+*/
+
+// Ex A
+// In each following exercise, we'll consider Car objects with the following shape:
+
+struct Car {
+    let name: String
+    let horsepower: Int
+    let dollarValue: Int
+    let isInStock: Bool
+}
+
+let astonMartin = Car(name: "Aston Martin One-77",
+                      horsepower: 750,
+                      dollarValue: 1850000,
+                      isInStock: true)
+
+
+// isLastInStock :: [Car] -> Boolean
+//const isLastInStock = (cars) => {
+//    const lastCar = last(cars);
+//    return prop('in_stock', lastCar);
+//};
+let isLastInStock = { (car:[Car]) -> Bool in
+    let lastCar = car.last
+    return lastCar?.isInStock
+        ?? false
+}
+
+let path = \Car.isInStock
+
+func last2<A>(_ x:[A]) -> A? {
+    return x.last
+}
+
+func isInStock(_ x:Car?) -> Bool {
+    return x?.isInStock ?? false
+}
+
+let isLastInStock2 = isInStock <<< last2
+
+let cars = [Car(name: "Honda Civic",
+                horsepower: 25,
+                dollarValue: 13000,
+                isInStock: false),
+            Car(name: "Aston Martin One-77",
+                horsepower: 750,
+                dollarValue: 1850000,
+                isInStock: true)
+]
+
+isLastInStock2(cars)
+
+// Ex B
+
+// Considering the following function:
+//
+
+//const average = xs => reduce(add, 0, xs) / xs.length;
+let average = { (xs:[Int]) in xs.reduce(0, +) / xs.count }
+//
+// Use the helper function `average` to refactor `averageDollarValue` as a composition."
+
+// averageDollarValue :: [Car] -> Int
+let averageDollarValue = { (cars:[Car]) -> Int in
+    let dollarValues = cars.map { $0.dollarValue }
+    return average(dollarValues)
+}
+
+averageDollarValue(cars)
+
+let dollarValue = { (cars:[Car]) in cars.map { $0.dollarValue } }
+
+let averageDollarValue2 = average <<< dollarValue
+
+averageDollarValue2(cars)
 
 //: [Next](@next)
 
