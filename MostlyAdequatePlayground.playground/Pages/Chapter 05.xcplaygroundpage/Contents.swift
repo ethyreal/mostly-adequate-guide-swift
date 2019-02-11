@@ -107,6 +107,42 @@ let lastUpper = toUpperCase <<< head <<< reverse
 let loudLastUpper = exclaim <<< toUpperCase <<< head <<< reverse
 
 lastUpper(arg) // 'UPPERCUT'
-loudLastUpper(arg) // 'UPPERCUT!”
+loudLastUpper(arg) // 'UPPERCUT!
+
+/*:
+ Applying the associative property gives us this flexibility and
+ peace of mind that the result will be equivalent.
+
+ One pleasant benefit of associativity is that any group of functions can be
+ extracted and bundled together in their very own composition.
+ Let's play with refactoring our previous example:
+ */
+
+let loudLastUpper2 = exclaim <<< toUpperCase <<< head <<< reverse
+
+// -- or ---------------------------------------------------------------
+
+let last2 = head <<< reverse
+let loudLastUpper3 = exclaim <<< toUpperCase <<< last
+
+// -- or ---------------------------------------------------------------
+
+let last3 = head <<< reverse
+let angry = exclaim <<< toUpperCase
+let loudLastUpper4 = angry <<< last
+
+loudLastUpper(arg) // 'UPPERCUT!
+loudLastUpper2(arg) // 'UPPERCUT!
+loudLastUpper3(arg) // 'UPPERCUT!
+loudLastUpper4(arg) // 'UPPERCUT!
+
+/*:
+ There's no right or wrong answers - we're just plugging our legos together in
+ whatever way we please. Usually it's best to group things in a reusable way like
+ `last` and `angry`. If familiar with Fowler's "[Refactoring][refactoring-book]",
+ one might recognize this process as "[extract function][extract-function-refactor]"
+ ...except without all the object state to worry about.
+ */
+
 
 //: [Next](@next)
