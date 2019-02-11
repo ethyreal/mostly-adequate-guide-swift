@@ -8,7 +8,7 @@ import Foundation
  Here's a more friendly _compose_ for you my dear readers:
  */
 
-func compose<A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C {
+func compose<A, B, C>(_ g: @escaping (B) -> C, _ f: @escaping (A) -> B) -> (A) -> C {
     return { a in
         g(f(a))
     }
@@ -48,5 +48,65 @@ let shout2 = { (x:String) in exclaim(toUpperCase(x)) }
  in the left direction (boo!). Let's look at an example where sequence matters:
 */
 
+
+func head(_ x:[String]) -> String {
+    return x.first ?? ""
+}
+
+func reverse(_ x:[String]) -> [String] {
+    return x.reversed()
+}
+
+let last = compose(head, reverse)
+
+last(["jumpkick", "roundhouse", "uppercut"]) // "uppercut"
+
+
+/*:
+ `reverse` will turn the list around while `head` grabs the initial item.
+ This results in an effective, albeit inefficient, `last` function.
+ The sequence of functions in the composition should be apparent here.
+ We could define a left to right version, however, we mirror the mathematical
+ version much more closely as it stands. That's right, composition is straight
+ from the math books. In fact, perhaps it's time to look at a property
+ that holds for any composition.
+
+ // associativity
+ compose(f, compose(g, h)) === compose(compose(f, g), h)
+
+ Composition is associative, meaning it doesn't matter how you group two of them.
+ So, should we choose to uppercase the string, we can write:
+ */
+
+compose(toUpperCase, compose(head, reverse))
+// or
+compose(compose(toUpperCase, head), reverse)
+
+/*:
+ Since it doesn't matter how we group our calls to compose, the result will be the same.
+ That allows us to write an infix verson of our method compose method:
+
+ EDIT: instead of variadic compose, create an infix function to backwoards compose
+*/
+
+precedencegroup BackwardsComposition {
+    associativity: left
+}
+
+infix operator <<<: BackwardsComposition
+
+func <<< <A, B, C>(_ g: @escaping (B) -> C, _ f: @escaping (A) -> B) -> (A) -> C {
+    return compose(g, f)
+}
+
+// previously we'd have to write two composes, but since it's associative,
+// we can give compose as many fn's as we like and let it decide how to group them.
+
+let arg = ["jumpkick", "roundhouse", "uppercut"]
+let lastUpper = toUpperCase <<< head <<< reverse
+let loudLastUpper = exclaim <<< toUpperCase <<< head <<< reverse
+
+lastUpper(arg) // 'UPPERCUT'
+loudLastUpper(arg) // 'UPPERCUT!”
 
 //: [Next](@next)
