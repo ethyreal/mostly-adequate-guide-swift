@@ -5,12 +5,29 @@ import Foundation
 /*:
  Functional Husbandry
 
+ Here's _compose_ :
+*/
+
+precedencegroup BackwardsComposition {
+    associativity: left
+}
+
+infix operator <<<: BackwardsComposition
+
+func <<< <A, B, C>(_ f: @escaping (B) -> C, _ g: @escaping (A) -> B) -> (A) -> C {
+    return { x in f(g(x)) }
+}
+
+
+/*:
+ ... Don't be scared! This is the level-9000-super-Saiyan-form of _compose_. For the sake of reasoning, let's drop the infix implementation and consider a simpler form that can compose two functions together. Once you get your head around that, you can push the abstraction further and consider it simply works for any number of functions (we could even prove that)!
+
  Here's a more friendly _compose_ for you my dear readers:
  */
 
-func compose<A, B, C>(_ g: @escaping (B) -> C, _ f: @escaping (A) -> B) -> (A) -> C {
+func compose<A, B, C>(_ f: @escaping (B) -> C, _ g: @escaping (A) -> B) -> (A) -> C {
     return { a in
-        g(f(a))
+        f(g(a))
     }
 }
 
@@ -89,16 +106,6 @@ compose(compose(toUpperCase, head), reverse)
  EDIT: instead of variadic compose, create an infix function to backwoards compose
 */
 
-precedencegroup BackwardsComposition {
-    associativity: left
-}
-
-infix operator <<<: BackwardsComposition
-
-func <<< <A, B, C>(_ g: @escaping (B) -> C, _ f: @escaping (A) -> B) -> (A) -> C {
-    return compose(g, f)
-}
-
 // previously we'd have to write two composes, but since it's associative,
 // we can give compose as many fn's as we like and let it decide how to group them.
 
@@ -145,4 +152,13 @@ loudLastUpper4(arg) // 'UPPERCUT!
  */
 
 
+func compose3(_ g: @escaping (String) -> String, _ f: @escaping (String) -> String) -> (String) -> String {
+    return { x in
+        g(f(x))
+    }
+}
+
+
 //: [Next](@next)
+
+
