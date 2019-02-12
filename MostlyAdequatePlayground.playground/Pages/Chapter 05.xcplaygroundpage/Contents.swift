@@ -242,6 +242,57 @@ let averageDollarValue2 = average <<< dollarValue
 
 averageDollarValue2(cars)
 
+// Ex C
+
+// Refactor `fastestCar` using `compose()` and other functions in pointfree-style.
+// Hint, the `flip` function may come in handy."
+
+let concat = { (a:String, b:String) in return a + b }
+
+// fastestCar :: [Car] -> String
+let fastestCar = { (cars:[Car]) -> String in
+    let sorted = cars.sorted(by: { (a, b) -> Bool in
+        return a.horsepower < b.horsepower
+    })
+    let fastest = last2(sorted)!
+    return "\(fastest.name) is the fastest"
+}
+fastestCar(cars)
+
+
+// Forward Composition!
+
+func loudLastUpper5(_ x:[String]) -> String {
+    return exclaim( toUpperCase( head( reverse(x) ) ) )
+}
+
+loudLastUpper5(arg)
+
+
+func forwardCompose<A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C {
+    return { a in
+        g(f(a))
+    }
+}
+
+precedencegroup ForwardComposition {
+    associativity: left
+}
+
+infix operator >>>: ForwardComposition
+
+func >>> <A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C {
+    return { x in g(f(x)) }
+}
+
+
+//let arg = ["jumpkick", "roundhouse", "uppercut"]
+let loudLastUpper6 = reverse
+                        >>> head
+                        >>> toUpperCase
+                        >>> exclaim
+loudLastUpper6(arg)
+
 //: [Next](@next)
 
 
