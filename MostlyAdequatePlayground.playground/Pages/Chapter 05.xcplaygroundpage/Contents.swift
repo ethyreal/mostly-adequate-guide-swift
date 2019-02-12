@@ -260,7 +260,14 @@ let fastestCar = { (cars:[Car]) -> String in
 fastestCar(cars)
 
 
+// After thoughts:
+
+
 // Forward Composition!
+
+// This doesn't feel like a huge readability gain over the standard function
+// (bellow):
+// let loudLastUpper = exclaim <<< toUpperCase <<< head <<< reverse
 
 func loudLastUpper5(_ x:[String]) -> String {
     return exclaim( toUpperCase( head( reverse(x) ) ) )
@@ -269,11 +276,11 @@ func loudLastUpper5(_ x:[String]) -> String {
 loudLastUpper5(arg)
 
 
-func forwardCompose<A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C {
-    return { a in
-        g(f(a))
-    }
-}
+//It's less parentheses and I do like the direction arrows pointing out the flow of data.
+// We are still reading right to left which for me doesn't feel natual in a language
+// that is written left to right.
+//
+//What I've been usually using is a `ForwardComposition` like this:
 
 precedencegroup ForwardComposition {
     associativity: left
@@ -285,8 +292,19 @@ func >>> <A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C
     return { x in g(f(x)) }
 }
 
+// I've heard this called `composeRight` or it could be a regular function called
+// `forwardCompose` instead of an infix:
 
-//let arg = ["jumpkick", "roundhouse", "uppercut"]
+
+func forwardCompose<A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C {
+    return { a in
+        g(f(a))
+    }
+}
+
+// Either way we can chain or pipe the logic from the left to the right,
+// the same direction as the language we are writing in!
+
 let loudLastUpper6 = reverse
                         >>> head
                         >>> toUpperCase
