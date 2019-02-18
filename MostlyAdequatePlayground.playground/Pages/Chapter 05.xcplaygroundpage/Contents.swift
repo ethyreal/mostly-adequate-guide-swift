@@ -282,8 +282,13 @@ loudLastUpper5(arg)
 //
 //What I've been usually using is a `ForwardComposition` like this:
 
+precedencegroup ForwardApplication {
+    associativity: left
+}
+
 precedencegroup ForwardComposition {
     associativity: left
+    higherThan: ForwardApplication
 }
 
 infix operator >>>: ForwardComposition
@@ -310,6 +315,41 @@ let loudLastUpper6 = reverse
                         >>> toUpperCase
                         >>> exclaim
 loudLastUpper6(arg)
+
+
+// Forward Application!
+
+// This is great, we are coposing left to right
+
+
+func apply<A, B>(_ x: A, to f: (A) -> B) -> B {
+    return f(x)
+}
+
+apply(arg, to: loudLastUpper6)
+
+apply(["jumpkick", "roundhouse", "uppercut"],
+      to: loudLastUpper)
+
+infix operator |>: ForwardApplication
+
+public func |> <A, B>(a: A, f: (A) -> B) -> B {
+    return f(a)
+}
+
+["jumpkick", "roundhouse", "uppercut"]
+    |> reverse
+    >>> head
+    >>> toUpperCase
+    >>> exclaim
+
+// but isn't this really the same as?
+
+["jumpkick", "roundhouse", "uppercut"]
+    |> reverse
+    |> head
+    |> toUpperCase
+    |> exclaim
 
 //: [Next](@next)
 
