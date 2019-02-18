@@ -3,7 +3,7 @@
 import Foundation
 
 /*:
- Functional Husbandry
+ Chapter 5 Functional Husbandry
 
  Here's _compose_ :
 */

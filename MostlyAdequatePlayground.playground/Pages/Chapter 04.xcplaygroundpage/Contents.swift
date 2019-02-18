@@ -1,14 +1,27 @@
+//: [Previous](@previous)
+
 import Foundation
+
+/*:
+ Chapter 04: Currying
+ 
+ Can't Live If Livin' Is without You
+ */
 
 func curry<A, B, C>(_ f: @escaping (A, B) -> C) -> (A) -> (B) -> C {
     return { a in { b in f(a, b) } }
 }
 
+/*:
+ Exercises
+ */
+
+
+//MARK:- Ex A
+
 func split(_ seperator:Character, _ value:String) -> [Substring] {
     return value.split(separator: seperator)
 }
-
-//MARK:- Ex A
 
 // Refactor to remove all arguments by partially applying the function.
 // words :: String -> [String]
@@ -58,3 +71,6 @@ let max2 = { (numbers:[Int]) in
 }
 
 max2([34, 53, 21])
+
+//: [Next](@next)
+
