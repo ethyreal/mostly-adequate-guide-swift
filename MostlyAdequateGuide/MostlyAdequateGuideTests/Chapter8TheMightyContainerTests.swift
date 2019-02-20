@@ -62,9 +62,8 @@ extension Chapter8TheMightyContainerTests {
         print(Container.of("flamethrowers").map { $0.uppercased() })
         // Container<String>(value: "FLAMETHROWERS")
 
-        //TODO: update this to use the curryied append and prop functions
         // Container.of('bombs').map(append(' away')).map(prop('length'));
-
+        //TODO: update this to use point free style like source
         print(Container.of("bombs")
             .map { "\($0) away" }
             .map { $0.count })
