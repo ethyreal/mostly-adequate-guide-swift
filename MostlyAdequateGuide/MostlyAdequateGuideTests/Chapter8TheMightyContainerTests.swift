@@ -9,6 +9,11 @@
 import XCTest
 @testable import MostlyAdequateGuide
 
+class Chapter8TheMightyContainerTests: XCTestCase {
+
+}
+
+//MARK:- The Mighty Container
 
 struct Container<A> {
 
@@ -19,8 +24,7 @@ struct Container<A> {
     }
 }
 
-class Chapter8TheMightyContainerTests: XCTestCase {
-
+extension Chapter8TheMightyContainerTests {
 
     func testContainer() {
 
@@ -34,8 +38,36 @@ class Chapter8TheMightyContainerTests: XCTestCase {
         // Container<Container<Dictionary<String, String>>>(value: Container<Dictionary<String, String>>(value: ["name": "yoda"]))
         // More verbose with namespaces:
         // Container<Container<Dictionary<String, String>>>(value: MostlyAdequateGuideTests.Container<Swift.Dictionary<Swift.String, Swift.String>>(value: ["name": "yoda"]))
-
-
     }
+}
 
+
+//MARK:- My First Functor
+
+extension Container {
+
+    // (a -> b) -> Container a -> Container b
+    func map<B>(_ t:(A) -> B) -> Container<B> {
+        return Container<B>.of(t(value))
+    }
+}
+
+extension Chapter8TheMightyContainerTests {
+
+    func testFunctor() {
+
+        print(Container.of(2).map { $0 + 2 })
+        // Container<Int>(value: 4)
+
+        print(Container.of("flamethrowers").map { $0.uppercased() })
+        // Container<String>(value: "FLAMETHROWERS")
+
+        //TODO: update this to use the curryied append and prop functions
+        // Container.of('bombs').map(append(' away')).map(prop('length'));
+
+        print(Container.of("bombs")
+            .map { "\($0) away" }
+            .map { $0.count })
+        // Container<Int>(value: 10)
+    }
 }
