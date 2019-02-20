@@ -13,6 +13,4 @@ func split(_ seperator:Character, _ value:String) -> [Substring] {
 }
 
 // splitC :: String -> String -> [String]
-
 let splitC = curry(split)
-

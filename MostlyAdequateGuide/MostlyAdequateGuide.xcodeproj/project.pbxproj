@@ -15,6 +15,10 @@
 		E73E8324221DC85C006A86B2 /* Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E8321221DC85C006A86B2 /* Split.swift */; };
 		E73E8326221DC8D9006A86B2 /* Chapter4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E8325221DC8D9006A86B2 /* Chapter4Tests.swift */; };
 		E73E8328221DCC5F006A86B2 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E8327221DCC5F006A86B2 /* Compose.swift */; };
+		E73E832A221DCEC1006A86B2 /* Chapter5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E8329221DCEC1006A86B2 /* Chapter5Tests.swift */; };
+		E73E832C221DDA23006A86B2 /* Head.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E832B221DDA23006A86B2 /* Head.swift */; };
+		E73E832E221DDA8C006A86B2 /* Reverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E832D221DDA8C006A86B2 /* Reverse.swift */; };
+		E73E8330221DDACB006A86B2 /* Last.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E832F221DDACB006A86B2 /* Last.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,10 @@
 		E73E8321221DC85C006A86B2 /* Split.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
 		E73E8325221DC8D9006A86B2 /* Chapter4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter4Tests.swift; sourceTree = "<group>"; };
 		E73E8327221DCC5F006A86B2 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
+		E73E8329221DCEC1006A86B2 /* Chapter5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter5Tests.swift; sourceTree = "<group>"; };
+		E73E832B221DDA23006A86B2 /* Head.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Head.swift; sourceTree = "<group>"; };
+		E73E832D221DDA8C006A86B2 /* Reverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reverse.swift; sourceTree = "<group>"; };
+		E73E832F221DDACB006A86B2 /* Last.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Last.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,7 @@
 				E73E830F221DC72A006A86B2 /* MostlyAdequateGuideTests.swift */,
 				E73E8311221DC72A006A86B2 /* Info.plist */,
 				E73E8325221DC8D9006A86B2 /* Chapter4Tests.swift */,
+				E73E8329221DCEC1006A86B2 /* Chapter5Tests.swift */,
 			);
 			path = MostlyAdequateGuideTests;
 			sourceTree = "<group>";
@@ -129,6 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				E73E8321221DC85C006A86B2 /* Split.swift */,
+				E73E832B221DDA23006A86B2 /* Head.swift */,
+				E73E832D221DDA8C006A86B2 /* Reverse.swift */,
+				E73E832F221DDACB006A86B2 /* Last.swift */,
 			);
 			path = PointFreeUtilities;
 			sourceTree = "<group>";
@@ -243,7 +255,10 @@
 			files = (
 				E73E8322221DC85C006A86B2 /* Curry.swift in Sources */,
 				E73E8324221DC85C006A86B2 /* Split.swift in Sources */,
+				E73E832E221DDA8C006A86B2 /* Reverse.swift in Sources */,
+				E73E8330221DDACB006A86B2 /* Last.swift in Sources */,
 				E73E8328221DCC5F006A86B2 /* Compose.swift in Sources */,
+				E73E832C221DDA23006A86B2 /* Head.swift in Sources */,
 				E73E8323221DC85C006A86B2 /* Identity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +269,7 @@
 			files = (
 				E73E8326221DC8D9006A86B2 /* Chapter4Tests.swift in Sources */,
 				E73E8310221DC72A006A86B2 /* MostlyAdequateGuideTests.swift in Sources */,
+				E73E832A221DCEC1006A86B2 /* Chapter5Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

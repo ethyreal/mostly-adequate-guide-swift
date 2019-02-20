@@ -11,7 +11,6 @@ import XCTest
 
 class Chapter4Tests: XCTestCase {
 
-
     func testExerciseA() {
 
         // Refactor to remove all arguments by partially applying the function.
@@ -34,7 +33,7 @@ class Chapter4Tests: XCTestCase {
         XCTAssertEqual(actual, ["once", "upon", "a", "time"])
     }
 
-    func testExceriseB() {
+    func testExceriseC() {
 
         // Considering the following function:
         //
