@@ -19,8 +19,9 @@ struct IO<T> {
         return IO(value: { value })
     }
 
-    func map<U>(_ transform:(T) -> U) -> IO<U> {
-        let newValue:() -> U = compose(transform, value)
-        return IO(value: newValue )
+    func map<U>(_ transform: @escaping (T) -> U) -> IO<U> {
+        return IO<U>() {
+            return transform(self.value())
+        }
     }
 }
