@@ -25,3 +25,15 @@ struct IO<T> {
         }
     }
 }
+
+extension Chapter8OldMcDonaldHadEffectsTests {
+
+    func testFunctor() {
+
+        XCTAssertEqual(
+            IO.of(UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300)))
+                .map { $0.bounds.midX }
+                .value(),
+            150.0)
+    }
+}
