@@ -23,6 +23,7 @@
 		E73E8334221F19C6006A86B2 /* Chapter8SchrodingersMaybeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E8333221F19C6006A86B2 /* Chapter8SchrodingersMaybeTests.swift */; };
 		E73E8336221F51A5006A86B2 /* Chapter8PureErrorHandlingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E8335221F51A5006A86B2 /* Chapter8PureErrorHandlingTests.swift */; };
 		E73E8338221F59F2006A86B2 /* Chapter8OldMcDonaldHadEffectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E8337221F59F1006A86B2 /* Chapter8OldMcDonaldHadEffectsTests.swift */; };
+		E73E833A2220D335006A86B2 /* Chapter9ExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E83392220D335006A86B2 /* Chapter9ExerciseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		E73E8333221F19C6006A86B2 /* Chapter8SchrodingersMaybeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter8SchrodingersMaybeTests.swift; sourceTree = "<group>"; };
 		E73E8335221F51A5006A86B2 /* Chapter8PureErrorHandlingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter8PureErrorHandlingTests.swift; sourceTree = "<group>"; };
 		E73E8337221F59F1006A86B2 /* Chapter8OldMcDonaldHadEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter8OldMcDonaldHadEffectsTests.swift; sourceTree = "<group>"; };
+		E73E83392220D335006A86B2 /* Chapter9ExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter9ExerciseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				E73E8333221F19C6006A86B2 /* Chapter8SchrodingersMaybeTests.swift */,
 				E73E8335221F51A5006A86B2 /* Chapter8PureErrorHandlingTests.swift */,
 				E73E8337221F59F1006A86B2 /* Chapter8OldMcDonaldHadEffectsTests.swift */,
+				E73E83392220D335006A86B2 /* Chapter9ExerciseTests.swift */,
 			);
 			path = MostlyAdequateGuideTests;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E73E8332221DDDB4006A86B2 /* Chapter8TheMightyContainerTests.swift in Sources */,
+				E73E833A2220D335006A86B2 /* Chapter9ExerciseTests.swift in Sources */,
 				E73E8338221F59F2006A86B2 /* Chapter8OldMcDonaldHadEffectsTests.swift in Sources */,
 				E73E8326221DC8D9006A86B2 /* Chapter4ExerciseTests.swift in Sources */,
 				E73E8310221DC72A006A86B2 /* MostlyAdequateGuideTests.swift in Sources */,
