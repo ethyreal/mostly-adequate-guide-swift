@@ -13,15 +13,15 @@ class Chapter8OldMcDonaldHadEffectsTests: XCTestCase {}
 
 struct IO<T> {
 
-    let value:() -> T
+    let unsafePerformIO:() -> T
 
     static func of(_ value:T) -> IO<T> {
-        return IO(value: { value })
+        return IO(unsafePerformIO: { value })
     }
 
     func map<U>(_ transform: @escaping (T) -> U) -> IO<U> {
         return IO<U>() {
-            return transform(self.value())
+            return transform(self.unsafePerformIO())
         }
     }
 }
@@ -30,10 +30,18 @@ extension Chapter8OldMcDonaldHadEffectsTests {
 
     func testFunctor() {
 
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
         XCTAssertEqual(
-            IO.of(UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300)))
+            IO.of(view)
                 .map { $0.bounds.midX }
-                .value(),
+                .unsafePerformIO(),
             150.0)
+
+        XCTAssertEqual(
+            IO.of(view)
+                .map { $0.bounds.midY }
+                .map { $0 / 2 }
+                .unsafePerformIO(),
+            75.0)
     }
 }
